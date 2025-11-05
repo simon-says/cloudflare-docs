@@ -18,16 +18,14 @@ To use DNSSEC for a subdomain setup, DNSSEC must be enabled on the parent zone. 
 
 ## Setup
 
-1. [Create](/dns/zone-setups/subdomain-setup/setup/#how-to) the child zone.
+1. Ensure your subdomain setup is complete & DNS resolution is working - refer to [Setup](/dns/zone-setups/subdomain-setup/setup/).
 
-2. Make sure the child zone is [active](/dns/zone-setups/reference/domain-status/) on Cloudflare and that DNS resolution is working properly for your subdomain.
+2. [Enable DNSSEC](/dns/dnssec/) for the child zone and save the information provided within the DS record output.
 
-3. [Enable DNSSEC](/dns/dnssec/) for the child zone and save the information provided within the DS record output.
-
-4. On the [**DNS Records**](https://dash.cloudflare.com/?to=/:account/:zone/dns/records) page of the parent zone, [add the DS record](/dns/manage-dns-records/how-to/create-dns-records/) from the previous step.
+3. On the [**DNS Records**](https://dash.cloudflare.com/?to=/:account/:zone/dns/records) page of the parent zone, [add the DS record](/dns/manage-dns-records/how-to/create-dns-records/) from the previous step.
 
    ![Screenshot showing how to add a DS record within Cloudflare](~/assets/images/dns/ds-record-example.png)
 
-5. Add an A record to the child zone to validate DNS resolution.
+4. Add an A record to the child zone to validate DNS resolution.
 
-6. Wait two to six hours. Then, [test the A record](/dns/dnssec/troubleshooting/#test-dnssec-with-dig) added in the previous step using multiple DNS resolvers with DNSSEC validation (`1.1.1.1`, `8.8.8.8`, and `9.9.9.9`). For example, if the A record is for `test.child.example.com`: `dig test.child.example.com +dnssec @1.1.1.1`.
+5. Wait two to six hours. Then, [test the A record](/dns/dnssec/troubleshooting/#test-dnssec-with-dig) added in the previous step using multiple DNS resolvers with DNSSEC validation (`1.1.1.1`, `8.8.8.8`, and `9.9.9.9`). For example, if the A record is for `test.child.example.com`: `dig test.child.example.com +dnssec @1.1.1.1`.
